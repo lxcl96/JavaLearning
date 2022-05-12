@@ -1,0 +1,6 @@
+1、DAO: data access object 数据访问对象
+
+2、这样的通用类，称为BasicDao，是专门和数据库交互的，即完成对数据库（表）的crud操作。
+
+3、在BasicDAO的基础上，实现一张表对应一个DAO 更好的完成功能。
+如：customer表-->Customer.java类（JavaBean）-->CustomerDao.java

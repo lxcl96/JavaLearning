@@ -1,0 +1,8 @@
+有一个配置文件：mysql.properties
+ip=192.168.0.13
+user=root
+pwd=12345
+
+请编程读取ip user pwd
+
+常规方法：Properties01.java

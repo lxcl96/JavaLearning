@@ -1,0 +1,19 @@
+UDP网络通信编程：
+  1、类DatagramSocket 和DatagramPacket 实现了基于UDP协议网络程序
+  2、UDP数据包通过数据包套接字 DatagramPacket 发送和接受，系统不保证UDP数据包一定能安全的送达到目的地，也不确定啥时候可以抵达
+  3、DatagramPacket对象封装了UDP数据包，在数据包中包含了发送端的ip地址和端口号以及接受端的ip地址和端口号
+  4、UDP协议中每个数据包都给出了完整的地址信息，因此无需建立发送方和接受方的连接
+
+说明：· UDP中不存在明确的服务端和客户端概念，一般称为发送端和接收端，且角色可以互相变化的
+     · 接受数据和发送数据是通过DatagramSocket对象完成，不再是Socket了
+     · 把数据封装到DatagramPacket对象中，即传输的数据包
+     · DatagramSocket可以指定在哪个端口进行发送或接收
+
+
+【UDP通信基本流程】
+       DatagramSocket（对象）   《===传递数据包就是DatagramPacket对象===》 DatagramSocket（对象）
+  1、核心的两个类 DatagramSocket 和 DatagramPacket
+  2、建立发送端DatagramSocket，接收端DatagramSocket
+  3、建立数据包DatagramPacket
+  4、调用DatagramSocket发送接受DatagramPacket
+  5、关闭DatagramSocket

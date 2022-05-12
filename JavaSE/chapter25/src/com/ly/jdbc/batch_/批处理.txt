@@ -1,0 +1,9 @@
+批处理：批量sql处理
+Jdbc批处理方法如下：
+ · addBatch()：添加需要批量处理的sql语句或参数
+ · executeBatch()：执行批量处理操作
+ · clearBatch()：清空加入到批处理的sql集合
+
+JDBC开启批处理，需要在URL中添加参数  ?rewriteBatchedStatement=true
+
+批处理一般和PreparedStatement一起搭配使用，可以减少编译次数，也可以减少运行次数，提高效率

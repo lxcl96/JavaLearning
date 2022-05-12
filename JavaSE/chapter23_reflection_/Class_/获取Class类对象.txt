@@ -1,0 +1,34 @@
+【获取Class类对象】
+编译阶段获取： Class.forName(全类名)获取
+1、前提：已知一个类的全类名，且该类在类路径下，可通过Class类的静态方法forName()获取，可能会抛出CLassNotFoundException
+   实例：Class<?> cls = Class.forName("chapter23_reflection_.introduce.Car");
+   应用场景：多用于配置文件，读取类的全路径，加载类
+   ***不知道具体的类，主要是读文件
+
+
+加载阶段：类名.class获取
+2、前提：若已知具体的类，通过类的Class获取，该方式最为安全可靠，程序性能最高
+   实例：Class cls2 = Car.class;
+   应用场景：多用于参数传递，比如通过反射获取对应构造器对象
+
+
+
+运行阶段：对象实例.getClass()获取
+3、前提：已知某个类的实例，调用该类的getClass()方法获取Class对象
+   实例：Car car = new Car;sout(car.getClass())
+   应用场景：通过创建好的对象，获取Class对象
+
+
+
+加载阶段：类加载器(ClassLoader有4种加载)获取
+4、步骤：（1）通过对象实例，得到类加载器
+        （2）通过类加载器得到Class对象
+
+基本数据类型.class获取
+5、基本数据类型(int,char,boolean,float,double,byte,long,short)按如下方式得到Class对象
+   步骤：Class cls = int.class
+
+
+基本数据类型包装类.Type获取
+6、基本类型的包装类（Integer，Character，Boolean，Float，Double，Long，Short）通过.type得到CLass类对象
+    步骤：Class cls = Integer.Type

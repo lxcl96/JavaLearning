@@ -1,0 +1,7 @@
+
+    元注解：注解的注解
+    元注解的种类：
+        1、Retention //指定注解的作用范围，有三种 SOURCE，CLASS，RUNTIME 【Retention_.java】
+        2、target    //指定注解可以在哪些地方使用
+        3、Document  //指定该注解是否会在javadoc体现
+        4、Inherited //子类会继承父类注解

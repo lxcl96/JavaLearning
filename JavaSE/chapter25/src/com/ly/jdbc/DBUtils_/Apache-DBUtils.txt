@@ -1,0 +1,19 @@
+1、commons-dbutils是一Apeche组织提供的开源JDBC工具类库，
+
+DBUtils类
+1、QueryRunner类：该类封装了sql的执行，是线程安全的。可以实现增、删、改、查、批处理
+2、使用QueryRunner类实现查询
+3、ResultSetHandler接口：该接口用于处理java.sql.ResultSet，将数据按要求转换为另一种形式
+
+主要方法：
+ArrayHandler：结果集的第一行数据转成对象数组
+ArrayListHandler:将结果集的每一行数据都转成一个数组，再存放在List中
+BeanHandler：将结果集中的第一行数据封装到对应的JavaBean实例中
+BeanListHandler：将结果集中的每一行数据封装到一个对应的JavaBean实例中，存放到List里 【类似我们的土方法】
+ColumnListHandler：将结果集中的某一列的数据存放到List中
+KeyHandler：将结果集中的每行数据都封装到Map中，再把这些map存到一个Map中，这其中key为指定的key
+MapHandler：将结果集中的第一行数据封装到一个Map中，key是列名，value就是对应的值
+MapListHandler：将结果集中的每一行数据封装到一个Map中，再存放在List
+
+
+ScalarHandler()查询单行单列的 即就一个数据的

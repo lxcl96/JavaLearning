@@ -1,0 +1,22 @@
+总结：
+    处理流/包装流 是处理流【包括节点流，包装流】
+    节点流是处理保存下来的东西【或者不是流】
+
+
+
+
+
+节点流：是可以从一个特定的数据源读取数据如FileReader/FileWriter、FileInputStream/FileOutputStream
+   就是对文件【包括文本图片视频等】，数组，字符串，管道
+
+
+
+
+
+
+处理流：（也叫包装流，是连接在已存在的流（节点流或处理流）之上的，为程序提供更加强大的读写功能，如BufferReader/BufferWriter，BufferedInputStream/BufferedOutputStream
+    BufferReader：其类中有属性Reader，即可以封装任意Reader子类的节点流 //修饰器模式
+    BufferWriter：其类中有属性Writer，即可以封装任意Writer子类的节点流
+
+    BufferedInputStream:其类中有属性InputStream，即可以封装任意InputStream子类的节点流
+    BufferedOutputStream:其类中有属性OutputStream，即可以封装任意OutputStream子类的节点流

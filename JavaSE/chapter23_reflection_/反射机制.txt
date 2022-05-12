@@ -1,0 +1,22 @@
+Java Reflection
+1、反射机制允许程序在执行·期间借助于Reflection API取得任何类的内部信息（比如：成员变量，构造器，成员方法等等），并能操作
+对象的属性及方法。反射机制在设计模式和框架底层都会用到
+
+2、加载完类后，在堆中就产生一个Class类型的对象（一个类只有一个Class对象），这个对象包含了类的完整结构信息。通过这个对象得
+到类的结构。这个Class对象就像一面镜子，透过这个镜子看到类的结构，所以形象的称之为：反射
+    比如：Person p 其中 p为对象 Person为类型
+        所以引入案列中：aclass为对象，类型为Class 【就是Class类，类名就是这个。只是比较奇怪而已】
+
+
+【Java反射机制可以完成】
+ · 在运行时判断任意一个对象所属类
+ · 在运行this构造任意一个类的对象
+ · 在运行时得到任意一个类所具有的成员变量和方法
+ · 在运行时调用任意一个对象的成员变量和方法
+ · 生成动态代理
+
+ 【反射相关的主要类】
+  · java.lang.Class 代表一个类，Class对象表示某个类加载后在堆中的对象
+  · java.lang.reflect.Method 代表类的方法 Method m即Method对象m就代表类中的某个方法
+  · java.lang.reflect.Field 代表类的属性  Field f即Field对象f就代表类中的某个字段
+  · java.lang.reflect.Constructor 代表类的构造方法  Constructor c即Constructor对象c就代表类中的某个构造方法

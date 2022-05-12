@@ -1,0 +1,13 @@
+【Class类】
+1、Class也是类，因此也继承了Object
+2、Class类对象是系统创建出来的，而不是new出来的
+3、对于某个类的Class类对象，在内存中只有一份，因此类只加载一次
+4、每个类的实例都会记得自己是由哪个Class实例生成的【意思还是只有唯一一个类的Class对象，都指向他】
+5、通过Class可以完整的得到一个类的完整结构，通过一系列API
+6、Class对象是存放在堆中的
+7、类的字节码二进制数据是存放在方法区的，有的地方称为类的元数据（包括 方法代码，变量名，方法名，访问权限等等。）
+
+    注意：· Class是系统创建的最底层的Class类【给用户调用其他类的Class类】，只是类名叫Class
+         · 某个类的Class是类加载时生产的
+            如Class<?> aClass = Class.forName("chapter23_reflection_.introduce.Cat");
+            中的aClass是Cat类的Class

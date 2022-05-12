@@ -1,0 +1,12 @@
+【反射机制的优缺点】Reflection02.java
+ · 优点：可以动态的创建和使用对象（也就是框架底层核心），使用灵活，如果没有反射机制，框架技术就失去底层支撑
+
+ · 缺点：使用反射基本是解释执行，对执行速度有影响
+
+
+【优化反射机制的执行效率】
+  关闭访问检查
+  1、Method和Field、Constructor对象都有 setAccessible()方法
+  2、setAccessible()方法作用是启动和禁用访问安全检查的开关
+  3、setAccessible(true) 表示反射的对象在使用时取消访问检查
+     setAccessible(false) 表示反射的对象在使用时进行访问检查

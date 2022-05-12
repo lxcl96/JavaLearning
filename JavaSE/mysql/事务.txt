@@ -1,0 +1,11 @@
+【开启事务不是针对单张表的，而是当前选择的整个数据库】
+讲多个dml（delete，insert，update）语句当成一个整体：一起成功才算成功，即需要加锁。
+
+当执行事务操作时（dml语句），mysql会在表上加锁，防止其他用户修改表的数据。
+
+mysql操作数据库控制台的几个重要操作：
+1、start transaction --开始一个事务
+2、savepoint 保存点 ---设置保存点
+3、rollback to 保存点  --回滚事务
+4、rollback --回滚全部事务
+5、commit --提交事务，不能回滚了

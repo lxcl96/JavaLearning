@@ -1,0 +1,6 @@
+introduce：介绍项目
+view：存放视图类
+service：存放业务逻辑类
+domain/model：存放实体类
+utils：工具类
+HouseRentApp.java：程序入口

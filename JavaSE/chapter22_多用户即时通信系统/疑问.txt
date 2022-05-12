@@ -1,0 +1,22 @@
+【服务器端的输入输出流和客户端的输入输出流是分开的，即客户端进行shutdownInput、shutdownOutput 服务器端的不受影响】
+1、为什么客户端和服务端不用关闭得到的输入输出流？
+  因为输入输出流关闭同时也把socket关闭了，因此想要只关闭I/O流而不关闭socket，需要用socket的ShutdownInput/ShutdownOutput。
+  但是客户端和服务器端通信是一直保持连接，即一直持有输入流方便读取数据，所以不能把输入流给关闭socket.shutdownInput。
+
+2、为什么客户端和服务端不用关闭socket的输入输出流即socket.shutdownInput()/socket.shutdownOutput()登录时而不会阻塞？
+    客户端和服务器端的子线程 一直在读取，是阻塞的！
+
+    因为是一直读取的，之前用shutdown是因为while循环读取，不知道什么时候结束。
+
+
+
+
+老韩代码中不用ois.close()/oos.close()和socket.shutdownOutput()原因如下：
+不用ois.close()/oos.close()：
+	是因为如果关闭了输入输出流，则socket连接也会关闭，所以不能关闭输入输出流。
+
+
+不用socket.shutdownOutput()：
+	是因为前面案例是循环读取，不知道什么时候是流的末尾，想要完整取出就需要shutdown（返回-1表示流的末尾）。
+	而此项目中是因为客户端要和服务器端一直保持通信，则输入输出流就不能被shutdown（因为要频繁发送信息）而且每次读取都是读取一个Object，不是循环所以不用判断流的末尾。
+通俗的讲就是：QQ聊天中登陆每次只取一个对象/一个字节 而不是完整取出流中的数据

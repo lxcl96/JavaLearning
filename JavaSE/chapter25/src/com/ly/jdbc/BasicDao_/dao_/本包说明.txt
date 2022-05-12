@@ -1,0 +1,6 @@
+BasicDAO 应用实例：
+
+1、utils 工具类
+2、domain JavaBean
+3、dao 存放表DAO文件和BasicDAO
+4、test 测试类
