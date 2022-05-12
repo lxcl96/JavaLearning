@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-js函数的第二种方式</title>
+    <script type="text/javascript">
+        //无参函数也要加括号
+        var func = function (){
+            alert("无参数函数被调用");
+        }
+        //alert(func());//加()代表被调用，不加代表输出变量内容
+
+
+        var func2 = function (a, b) {
+            alert("有参数值 a=" + a + "b=" + b);
+        }
+        //func2(1,2);
+
+        var func3 = function (num1, num2) {
+            return num1 + num2;
+        }
+        alert(func3(1,2));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

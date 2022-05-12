@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0-标签语法</title>
+</head>
+<body>
+    <!--  标签不能交叉嵌套  -->
+    正确：<div><span>早安，哈哈</span></div>
+    错误：<div><span>早安，哈哈</div></span> 虽然也会显示这是因为浏览器的自动修复
+
+    <!--单标签    -->
+    正确：<br />
+    错误：<br>
+
+    <!-- 属性必须有值，且属性值必须加引号-->
+    正确：<font color="blue">早安</font>
+    错误：<font color=blue>早安</font>
+    错误：<font color=>早安</font>
+
+    <!-- 注释不要嵌套   -->
+</body>
+</html>

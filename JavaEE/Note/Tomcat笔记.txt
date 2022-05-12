@@ -1,0 +1,18 @@
+[JavaWeb]
+  概念：JavaWeb是指通过Java语言编写的(基于请求和响应)，可以通过浏览器访问的程序总称。
+  请求：客户端向服务端发送数据，叫请求Requests
+  响应：服务端给客户端发送信息，叫响应Response
+  关系：成对出现，有请求就有响应
+
+
+[TOMCAT建立web工程]
+  方法1：直接把项目拷贝到 webapps目录下，一个项目就是一个目录【默认localhost:8080就是webapps目录】
+
+  方法2：在conf/Catalina/localhost/xxxx.xml    建立xxx.xml文件,一个项目一个xml文件
+  【注意实际访问是：localhost:8080/xxxx，是和xml的文件名一样，而不是里面的path，当然你也可以把这两个设置为一样】
+    例：<Context path="/web03" docBase="E:\IdeaProjects\JavaWeb\out\artifacts\web03_war_exploded" />
+
+
+
+[TOMCAT]
+  tomcat默认访问root目录下index.html/index.jsp

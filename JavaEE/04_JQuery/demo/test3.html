@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="script/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            //attr
+            //$(":checkbox:first").attr("name");//获取name
+            //$(":checkbox:first").attr("name","abc");//设置name
+
+
+            //alert($(":checkbox:first").attr("checked"));//获取 checked 属性
+            //alert($(":checkbox:last").attr("checked"));//如果没有声明 checked 回复undefined[]
+
+
+            //prop
+            //alert($(":checkbox:last").prop("checked"));//如果没有声明 checked 回复fasle
+            alert($(":checkbox:first").prop("hello","no"));//如果没有声明 checked true
+
+        });
+
+
+    </script>
+</head>
+<body>
+<body>
+    <br/>
+    多选：
+    <input name="checkbox" type="checkbox" checked="checked" value="checkbox1" />checkbox1
+    <input name="checkbox" type="checkbox" value="checkbox2" />checkbox2
+    <br/><br/>
+    <div>1234</div>
+    <div>1234</div>
+</body>
+</body>
+</html>

@@ -1,0 +1,201 @@
+[JavaScript]
+ · JS是弱类型，即类型可变
+ · Java是强类型，即类型定义后是不可变的
+
+ 特点：
+  1、交互性，它可以实现信息的动态交互
+  2、安全性，不允许直接访问本地硬盘
+  3、跨平台性，只要支持js的浏览器都可以
+
+
+[JS的使用方法]
+  1、在html的<head>标签中，或者<body>标签中书写js代码
+  例子：<script type="text/javascript"> </script>
+
+  2、js单独存储，html 文件中使用 <script> 标签引入js文件
+  例子：<script type="text/javascript" src="1.js"></script>
+
+
+
+
+  注意：一个<script>标签中，方法1和方法2不能同时使用，否则方式2失效；但是你可以再写一个<script>标签即可
+      <script type="text/javascript"> </script>
+      <script type="text/javascript" src="1.js"></script>
+
+[js变量类型]
+  · 数值类型：即number类型：int short long float double byte
+  · 字符串类型：string
+  · 对象类型：object
+  · 布尔类型：boolean
+  · 函数类型：function
+
+[js中特殊的值]
+  undefined：未定义的，所有js变量没给初始值时，默认都是undefined
+  null：空值
+  NAN：即Not A Number 非数字，非数值
+
+
+[js变量定义]
+  var 变量名;
+  var 变量名 = 值;
+
+
+[关系运算符]
+  注意：=是赋值，不是运算符
+  等于：==  ，是简单的字面值的比较  如： 1 = "1" 对的
+  全等于：===  ，字面比较 + 数据类型比较 如： 1 = "1" 错的
+  其他的和Java一样
+
+
+[逻辑运算符]
+  与运算：&&
+  或运算：||
+  非运算：!
+
+  注：在js中所有的变量，都可以当作一个布尔boolean类型使用。
+      即 0，null，undefined，""(空串,一个空格都不能有)，都认为是false
+
+     && 与运算：
+      1、当表达式全为真时，返回最后一个表达式的值  例：1&&"a" 结果为 "a"
+      2、当表达式为假时，返回第一个为假的值   例：1&&"a"&&0&&null&&1213 结果为0
+
+     || 或运算
+     1、当表达式全为假，返回最后一个表达式的值    如：0||null||undefined 结果为undefined
+     2、当表达式有一个为真时，返回第一个为真的值   如：0||null||1||undefined 结果为1
+
+
+[js数组***]
+  var 数组名 = [] //空数组
+  var 数组名 = [1,"2",true] //数组不限制类型
+
+  注意：数组长度自动扩容【读操作不行】，arr.length就是数组的 最大下标+1
+
+[js函数***]
+定义方式：
+  1、使用function关键字来定义函数
+    格式：
+      function 函数名(形参列表){} //默认就有返回值，不写就是undefined 如：07-js函数.html
+
+  2、var 函数名 = function(形参列表){}
+
+  注：使用时1和2方法是一样的
+     js不允许方法重载，顺序下来否则会覆盖上一个定义    见：09-js函数不允许重载.html
+
+
+[js函数隐藏参数]
+  函数的arguments 隐形参数（只在function函数内）
+  在function函数中不需要定义，但是可以用来获取所有参数的变量，叫隐形参数。
+        类似于java的可变长参数  public void fun(Object... o),
+  操作也类似数组
+
+
+[js自定义对象]
+   1、Object形式的自定义对象
+     对象的定义：
+         var 变量名 = new Object; //对象实例即空对象
+         变量名.属性值 = 值; //增加属性
+         变量名.函数名 = function(){}//增加函数
+
+     对象的访问/调用：
+         变量名.属性名/函数名();
+   2、{}大括号形式的自定义对象
+     var 变量名 = {
+        属性1:值,
+        属性2:值,
+        属性3:值,                  //成员用逗号,隔开
+        函数名:function() {}       //最后一个不需要添加逗号
+        };
+
+
+[js事件]
+  事件：电脑的输入设备与页面进行交互的响应，叫做事件。 如果想要使用事件 则需要完成事件的注册/绑定
+  常用的事件：
+    · onload 加载完成事件。 -- 页面加载完成后，自动触发，常用于做页面js代码初始化操作
+    · onclick 单击事件  -- 常用于按钮的点击响应操作 <button>
+    · onblur  失去焦点   -- 常用于输入框失去焦点后验证其输入内容是否合法。
+    · onchange 内容发生改变事件  -- 常用于下拉列表，和输入框内容发生改变后操作
+    · onsubmit 表单提交事件   -- 常用于表单提交前验证所有表单项是否合法。
+
+  用法见：event包
+
+[js事件绑定/事件注册 ***]
+  事件注册/绑定：即就是告诉浏览器，当事件响应后需要执行哪些操作代码。
+  分为：
+    静态注册事件：指通过html标签的事件属性，直接赋于事件响应后的代码；【即js代码写在事件后面 】
+      例子：<body onload="alert('静态注册onload事件')">
+           <body onload="onloadFunc()"> //头部定义js内容，直接调用方法
+
+    动态注册事件：指先通过js代码得到标签的dom对象【document对象】，然后通过dom对象.事件名=function(){}这种形式赋于事件响应后的代码，叫动态注册。
+        动态注册事件步骤：
+          window.onload = function()  {
+              1、获取标签对象  //【onload事件特殊，1-2不用写，因为其他事件动态注册 本身就是借助onload事件】
+              2、标签对象.事件名=function(){}
+          }
+
+        例子： 直接在头部的script标签中声明，自动调用
+            window.onload = function() {
+                var obj = document.getElementById() //document在js中代表当前页面的所有内容xpath查找
+                obj.事件名 = function() {}
+            }
+
+
+[DOM模型]
+  DOM全称Document Object Model 文档对象模型
+  即：将文档/网页中所有标签，属性，文本转换成对象来处理
+
+[Document对象***]
+  Document对象理解：
+    1、Document它管理了所有的html文档内容
+    2、document它是一种树结构文档，有层级关系
+    3、它让我们把所有标签都对象化
+    4、我们可以通过document访问所有标签对象
+
+[Document对象中的方法：]
+  1、document.getElementById("id名") 通过id查询标签元素，返回第一个查到的【所以要求id唯一】
+  2、document.getElementByName("name名") 通过属性name值查询标签元素，返回所有集合
+  3、document.getElementByTagName("标签名") 通过标签名如div，input值查询标签元素，返回所有集合
+  4、document.createElement("标签名") 通过标签名创建标签对象，通过js创建【需注意，需要加到body中才会显示】
+    例子：   var divObj = document.createElement("div"); //还在内存中  <div></div>
+            divObj.innerHTML = "国歌我爱你<h1>哈哈</h1>";//还在内存中  <div>国歌我爱你<h1>哈哈</h1></div>
+            document.body.appendChild(divObj);
+  5、document.createTextNode("内容") 创建文本节点
+
+       【只要是有这个属性，工具不提示也是这个属性，直接用】
+  注意：【其实就是把标签看成对象了，里面的一系列都是其属性了 tagName，value type id等】
+    · innerText是双标签中文字，单标签为空
+    · dom对象.value   获取标签中的值
+    · dom对象.type   获取标签的type类型
+    · dom对象.id   获取标签的id
+    · dom对象.tagName   获取标签名
+    · dom对象.innerHTML   获取html，也可以直接编写html语言 如： spanObj.innerHTML = "<img src=\"false.png\" />"
+    · dom对象.checked     只要是有这个属性，工具不提示也是这个属性，直接用
+
+[节点的常用属性和方法：]
+  节点：网页的每个标签都是节点，还有标签间的空格，标签间的文本都是子节点
+
+  常用方法： [这俩查到的DOM obj对象都能用]
+     getElementByTagName("标签名")  获取当前节点指定标签名的孩子节点
+
+     appendChild(ochildNode) 可以添加一个子节点，ochildNode是要添加的孩子节点
+        例子：  var divObj = document.createElement("div"); //还在内存中  <div></div>
+               divObj.innerHTML = "国歌我爱你<h1>哈哈</h1>";//还在内存中  <div>国歌我爱你<h1>哈哈</h1></div>
+               document.body.appendChild(divObj);
+
+  常用属性：
+     childNodes：当且节点的所有孩子节点
+     firstChild：当前节点的第一个孩子节点
+     lastChild：当前节点的最后一个孩子节点
+     parentNode:获取当前节点的父节点
+     nextSibling:获取当前节点下一个兄弟节点
+     previousSibling：获取当前节点的上一个兄弟节点
+     className：获取当前节点的class属性值
+     innerHTML：获取/设置起始标签 和 结束标签中的内容【包括标签属性】  【都要】
+         例如：  <ul id="city">    //ul的innerHTML4个li所有 + 5个空格
+                    <li id="bj">北京</li>
+                    <li>上海</li>
+                    <li>东京</li>
+                    <li>首尔</li>
+            	</ul>
+     innerText：获取/设置双标签中的文字   包括里面字标签的text   【只取文本】
+        例如上面的：  //ul的InnerText 为【5个断开的空值 + 北上东首】
+

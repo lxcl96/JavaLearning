@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getElementByTagName</title>
+    <script type="text/javascript">
+        function selectAll() {
+            var tagNames = document.getElementsByTagName("input");
+            for (var i=0;i<tagNames.length;i++) {
+                tagNames[i].checked = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    兴趣爱好：
+    <input type="checkbox" value="cpp"/> C++
+    <input type="checkbox" value="java"/> Java
+    <input type="checkbox" value="js"/> Javascript<br/>
+    <button onclick="selectAll()">全选</button>
+</body>
+</html>

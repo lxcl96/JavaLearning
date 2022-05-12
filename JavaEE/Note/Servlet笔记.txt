@@ -1,0 +1,272 @@
+[Servlet]
+  · 什么是Servlet？
+     1、是JavaEE规范之一。规范就是接口
+     2、是JavaWeb三大组件之一。三大组件分别是：Servket、Filter过滤器、listener监听器
+     3、是运行在服务器上的Java小程序，可以接受客户端发来的请求，并响应数据给客户端。
+
+[实现Servlet程序]
+  1、编写一个类如：HelloServlet 去实现Servlet接口
+  2、实现service方法，处理请求，并响应数据。
+  3、到web.xml中去配置servlet程序访问地址，如果浏览器访问了就会执行对应类（HelloServlet）的service方法。
+
+
+
+[servlet声明周期执行顺序]
+  1、执行Servlet构造器方法
+  2、执行init初始化方法
+  3、执行service方法
+  4、执行destroy销毁方法
+
+  注意：
+    · 第一步和第二步是在第一次访问时，创建servlet服务被调用【只调用一次，除非重启】
+    · 后面每次请求路径，只会执行servlet的service方法[如刷新，重进] 【每次访问都会调用第三次方法】
+    · 第四步 只会在停止servlet时执行，释放资源
+
+
+
+[通过继承HttpServlet实现Servlet程序]
+   步骤：
+     1、编写一个类去继承HttpServlet
+     2、根据业务需要，重写doGet或doPost方法
+     3、去web.xml中去配置Servlet程序的访问
+
+[IDEA右击-new-servlet会自动配置web.xml]
+
+[Servlet层级结构及各部分作用]
+    见图片
+
+
+[ServletConfig接口----在servlet初始化init方法中使用的]
+  说明：Servlet程序和ServletConfig对象都是由Tomcat负责创建的，我们只负责使用
+       Servlet程序默认是第一次访问时创建，ServletConfig是每个Servlet程序在创建时，就会对应创建一个ServletConfig对象【即：ServletConfig伴随Servlet程序创建而创建，且也只创建一次】
+  作用：
+    1、可以获取Servlet在web.xml中的别名即 <servlet-name></servlet-name>的值
+    2、获取初始化参数 <init-param> [在web.xml中配置]
+    3、获取ServletContext对象
+
+  注意：1、servlet可以在init()函数中使用，也可以在其他函数中使用：只需要使用getServletConfig()函数即可;
+       2、每个ServletConfig只会获得自己对应Servlet程序的参数，得不到别的Servlet程序参数。如：HelloServlet得不到HelloServlet3的参数
+
+   如果重写了init方法，必须要用super.init(config)显示继承一下，否则无法获取web.xml的 ServletConfig
+
+
+[ServletContext对象]
+  1、ServletContext：是一个接口，他表示Servlet上下文对象。
+  2、一个web工程，只有一个ServletContext对象实例。【即可以有多个servlet，但是ServletContext只有一个】
+  3、ServletContext是一个域对象，范围是整个web工程，06_servlet,[05_web上访问不到]。
+    域对象：可以像Map一样存储数据的对象，叫做域对象。【这里的域是指存取数据的操作范围】
+  4、ServletContext是在web工程部署启动时创建，在web工程停止时销毁。【即每次重启都会清空】
+
+
+   [Map和域对象方法]
+   Map：
+        存数据：put()
+        取数据：get()
+        删除数据：remove()
+   域对象：
+        存数据：setAttribute()
+        取数据：getAttribute()
+        删除数据：removeAttribute()
+
+  ServletContext对象的作用：
+    1、获取web.xml中配置的上下文参数  如：<context-param>上下文参数，web.xml中配置<context-param>
+    2、获取当前的工程路径   /工程名
+    3、获取工程部署后在服务器磁盘上的绝对路径。
+    4、像Map一样存储数据。
+
+
+
+[HTTP协议]
+  HTTP协议：就是只客户端和服务器之间通信时，发送的数据遵循的一种规范。【网络中数据也叫做报文】
+
+  客户端给服务端发送消息叫请求：get请求、post请求
+  ***服务端给客户端发送消息叫响应：
+    [HTTP协议响应格式]
+      1、响应行
+        (1) 响应的协议和版本号
+        (2) 响应的状态码 如200
+        (3) 响应状态描述符 如ok
+      2、响应头
+        (1)key:value 不同的响应头，有不同的含义
+       ***空行隔开  响应头和响应体间用空行隔开
+      3、响应体 ---》就是回传给客户端的数据
+
+
+  常见的请求头：
+    Accept：
+    Accept-Language:
+    Connection:
+    Cookie;
+    Referer:请求发起时，地址栏地址即从哪里来
+
+
+  [GET请求]
+    http协议格式：
+      1、请求行
+           (1) 请求的方式，get
+           (2) 请求的资源路径 +?+请求参数  [html中action提交的请求链]
+           (3) 请求的协议版本号     HTTP/1.1
+      2、请求头
+           key:value组成 不同的键值对，表示不同的含义【就是浏览器中F12 里Request Headers】
+
+  [POST请求]
+      http协议格式：
+        1、请求行
+             (1) 请求的方式，post
+             (2) 请求的资源路径 +?+请求参数  [html中action提交的请求链]
+             (3) 请求的协议版本号     HTTP/1.1
+        2、请求头
+             key:value组成 不同的键值对，表示不同的含义【多个键值对用 & 拼接】
+        空行   **请求头和请求体 用空行隔开
+        3、请求体
+
+  [区分get请求和post请求]
+     get请求：
+          1、form标签 method = get
+          2、a标签
+          3、link标签引入css
+          4、script标签引入js文件
+          5、img标签引入图片
+          6、iframe引入html页面
+          7、在浏览器输入地址敲回车
+     POST请求：
+          1、form标签 method = post
+
+
+[MIME类型，即HTTP中传输文件数据的类型见图片]
+   即Content-Type
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[HttpServletRequest类]
+  1、HttpServletRequest类有什么用？
+   答：每次只要有请求进入Tomcat服务器，Tomcat服务器就会把请求过来的HTTP协议信息解析好封装到 HttpServletRequest Request对象中。
+   然后传递到servlet的service方法中（如doGet和doPost）给我们使用。我们就可以通过HttpServletRequest 获取到所有请求的信息。
+
+  2、HTTPServletRequest类的常用方法
+       1、getRequestURI()    获得请求的资源地址/路径   如：/07_servlet/req
+
+       2、getRequestURL()    获得请求的统一资源定位符，即绝对路径  如：http://localhost:8080/07_servlet/req
+
+       3、getRemoteHost()    获取客户端ip地址
+            //如果访问的是http://localhost:8080/07_servlet/req 返回ip为127.0.0.1
+            //如果访问的是http://192.168.31.169:8080/07_servlet/req 返回ip为192.168.31.169
+       4、getHeader("User-Agent")        获取请求头
+           参数为 User-Agent,Accept,Cache-Control,Connection等等
+
+       5、getParameter("name") 就为ly     获取请求的参数
+            函数传递的参数就是 请求链里的key
+            如： http://localhost:8080/07_servlet/req?name=ly 参数为name 值为ly
+
+       6、getParameterValues()     获取请求的参数，多个值使用
+          此时hobby就适合用此方法
+         如：http://localhost:8080/07_servlet/req?name=ly&hobby=cpp&hobby=java&hobby=js
+
+       7、getMethod()        获取请求的方式post or get
+       8、setAttribute(key,value)     设置域数据 【和ServletContext不是同一个】
+       9、getAttribute(key)     获取域数据
+       10、getRequestDispatcher()    获取请求转发对象
+
+
+
+
+[请求的转发]
+  1、什么是请求的转发？【从servlet1到servlet2的操作】
+   答：请求转发是指，服务器收到请求后，从一个资源跳转到另一个资源的操作叫请求转发。
+   例：servlet1 和servlet2共同完成一个业务，客户请求到servlet1，servlet1审核通过后转发到servlet2
+
+
+   请求转发的特点：
+     1、浏览器地址栏没有变化，因为servlet1就把请求原模原样传给servlet2
+     2、对于客户端而已，servlet1和servlet2处理同一次请求 ，因为客户端没有变化
+     3、他们共享request域中的数据，因为传递的是就是同一个request 和response
+     4、可以转发到WEB-INFO目录下  [WEB-INF是保护目录无法浏览器访问，但是请求转发可以访问]
+       例：RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/b.html");
+     5、请求转发无法跳出当前工程，因为无论你给出什么，他都是在当前工程目录下拼接的
+       如：给路径baidu.com  则实际路径是http://localhost:8080/07_servlet/baidu.com
+
+
+[base标签-html标签-一般放在title标签下]
+
+    参考：c.html中的 跳回首页地址：<a href="../../index.html">跳回首页</a>
+  1、从网页index.html 到 c.html 因为配置的都是相对路径， 所以可以相互跳转
+     <a href="a/b/c.html">a/b/c.html</a>
+     跳转到c.html此时浏览器的地址为：
+      http://localhost:8080/07_servlet/a/b/c.html
+
+  [因为所有相对路径工作时，都会根据当前浏览器地址来跳转]
+  2、但是如果从网页index.html 到c，使用的是请求转发，而还想使用 c.html配置的相对路径跳转回index.html就会发现无法找到该网页
+    <a href="http://localhost:8080/07_servlet/fc">请求转发方式跳转</a>
+    跳转到c.html此时浏览器的地址为：
+     http://localhost:8080/07_servlet/fc  【所以相对路径失败，找不到文件】
+     ==》变为http://localhost:8080/index.html 【fc不是目录，直接去掉，..到07_servlet再..到http://localhost:8080】
+
+
+====》解决方案：base标签。因为Base标签可以设置当前页面中所有相对路径工作时，参考哪个路径来进行跳转。
+
+
+    <base href="http://localhost:8080/07_servlet/a//b/c.html">
+
+
+
+
+[web中 / 斜杠的不同意义]
+  1、在html中，如果被浏览器解析 就是端口号 http://localhost:8080
+  2、如果被服务器解析，/ 得到的地址就是 工程路径  http://localhost:8080/工程路径  即idea中的web目录
+     用在 ：
+       · web.xml中servlet访问地址
+       · ServletContext的getRealpath("/")
+       · Request.getRequestDispatcher("/")
+
+     特殊：
+       response.sendRedirect("/"); 表示把/ 发送给浏览器解析 得到 http://localhost:8080
+
+
+[HttpServletResponse类]
+  HttpServletResponse类 和HttpServletRequest类一样，每次有请求进来，Tomcat服务器都会创建一个Response对象，传递给servlet程序使用。
+  HttpServletRequest：表示请求过来信息
+  HttpServletResponse：表示所有响应的信息，返回给客户端 通过流方式
+
+  [response响应方式：两种输出流]
+    1、字节流 getOutputStream()     常用于下载，传递二进制数据
+    2、字符流 getWriter()           常用于回传字符串（常用）
+    两个流同时只能用一个。不能同时使用，否则就会报错
+
+
+
+[请求重定向]
+  请求重定向：是指客户端给服务器发送请求，然后服务器告诉客户端说。我给你一些地址，你去新地址访问。这就叫请求重定向
+  原因：之前的地址可能失效了
+  详细见图片
+
+  流程：
+    客户端地址栏输入地址1，请求到服务器。服务器判断此网址已经升级，于是返回响应码302，并把新地址放在响应头 Location中。
+    客户端收到返回，自动跳转到新地址。
+
+  代码1：
+            //设置响应状态码 和响应头，返回新地址
+            response.setStatus(302);
+            response.setHeader("location","http://localhost:8080/07_servlet/sr2");
+
+  代码2：
+            //设置响应状态码 和响应头，返回新地址
+            response.setStatus(302);
+            response.setHeader("location","http://localhost:8080/07_servlet/sr2");
+
+
+  特点：
+    1、浏览器地址栏会发生变化
+    2、是两次请求
+    3、不共享Request域数据，因为并没有传递Request 和Response参数
+    4、不能访问到WEB-INF目录，因为还是相当于客户端浏览器直接访问，不是由服务器跳转

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getElementById</title>
+    <script type="text/javascript">
+        /**
+         * 需求：当用户点击了校验按钮，要获取用户输入框里的内容，判断是否合法
+         * 规则：必须有字母 数字 下划线 并且长度是5-12位
+         */
+        window.onload = function () {
+            let btnObj = document.getElementById("btn01");
+            let usernameObj = document.getElementById("username"); //这就是dom对象
+            //这里是刚加载完就获取，没输入肯定是空啊
+
+            //alert(username);
+            //alert(username.id);
+            //alert(username.type); //查看类型
+            btnObj.onclick = function () {
+                //获取输入框内容
+                let usernameText = usernameObj.value;
+                //正则表达式判断  表示字母数字下划线 5-12位 /^ $/
+                let patt = /^\w{5,12}$/;
+                //修改页面提示
+                var spanObj = document.getElementById("usernameSpan");
+
+                //alert(spanObj.innerText);//双标签中的文字
+                //判断
+                //alert(usernameText);
+                if (patt.test(usernameText)) {
+                    //spanObj.innerText = "用户名合法";
+                    spanObj.innerHTML = "<img src=\"right.png\" />"
+                    return true;
+                } else {
+                    //alert("用户名不合法");
+                    //spanObj.innerText = "用户名不合法";
+                    spanObj.innerHTML = "<img src=\"false.png\" />"
+                    return false;
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+    用户名：<input type="text" id="username" />
+    <!--  默认隐藏  -->
+    <span style="color: red" id="usernameSpan">
+
+    </span>
+    <button id="btn01">验证</button>
+</body>
+</html>

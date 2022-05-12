@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js对象的用处</title>
+    <script type="text/javascript" src="script/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("button").bind("click mouseover mouseout", function (event) {
+                if (event.type == "click") {
+                    alert("click操作");
+                };
+                if (event.type == "mouseover") {
+                    alert("mouseover操作")
+                };
+                if (event.type = "mouseout") {
+                    alert("mouseout操作");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>哈哈</button>
+</body>
+</html>

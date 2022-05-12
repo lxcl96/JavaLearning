@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-jsObject形式的自定义对象</title>
+    <script type="text/javascript">
+        var obj = new Object();
+        //alert(typeof obj);
+        obj.name = 'hsp';
+        obj.age = 30;
+        obj.sum = function (num1, num2) {
+            alert("姓名=" + this.name + "年龄=" + this.age)
+            return num2 + num1;
+        }
+
+        //调用对象属性
+        alert(obj.name);
+        alert(obj.age);
+        obj.sum(1,2);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

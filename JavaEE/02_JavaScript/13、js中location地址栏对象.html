@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13、js中location地址栏对象</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            let elementById = document.getElementById("test");
+            elementById.onclick = function () {
+                alert(location.href);
+                location.href = "http://www.baidu.com";
+            }
+        }
+    </script>
+</head>
+<body>
+<!--13、js中location地址栏对象 可以获取和设置地址栏地址-->
+<input type="button" value="确定" id="test">
+</body>
+</html>

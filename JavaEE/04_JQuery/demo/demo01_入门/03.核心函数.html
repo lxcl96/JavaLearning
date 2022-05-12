@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        //1、$()传入参数为函数时，会自动执行
+        $(function () {
+           // alert("你好");
+
+            //2、传入是HTML字符串时：会帮我们创建这些html标签对象
+            $("<div>\n" +
+                "        <span>div-span1</span>\n" +
+                "        <span>div-span2</span>\n" +
+                "    </div>").appendTo("body");
+
+            //3、传入参数为 选择器字符串(#btnid/.className/标签名)时：表示查找，以指定选择器查找对象
+            //alert($("button").length);
+
+
+            //4、传入参数为DOM对象时：会把DOM对象转成JQ对象
+            var btnObj = document.getElementById("btn01"); //DOM对象 类型[object HTMLButtonElement]
+            var $1 = $(btnObj); //JQ对象   类型[object Object]
+            alert(btnObj + "\n" + $1);
+        });
+
+
+
+    </script>
+</head>
+<body>
+    <button id="btn01">按钮1</button>
+    <button >按钮2</button>
+    <button >按钮3</button>
+    <button >按钮4</button>
+</body>
+</html>

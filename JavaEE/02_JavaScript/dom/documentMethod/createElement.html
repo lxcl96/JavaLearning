@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createElement</title>
+    <script type="text/javascript">
+        //使用js代码创建html标签并显示在页面上   <div>国歌我爱你</div>
+        function normal() {
+            var divObj = document.createElement("div"); //还在内存中  <div></div>
+            //htmlDivElement.innerText = "国歌我爱你";
+            divObj.innerHTML = "国歌我爱你<h1>哈哈</h1>";//还在内存中  <div>国歌我爱你<h1>哈哈</h1></div>
+
+            //给body加上创建的子元素 document自带body属性
+            //document.body.appendChild(divObj);
+
+            var bodyObjs = document.getElementsByTagName("body"); //此方法找的是集合，就算只有一个 也是集合
+            bodyObjs[0].appendChild(divObj);
+        }
+
+
+        //通过给指定div创建子文本节点，添加元素
+        function textNode() {
+            var divObj = document.createElement("div");
+            var text = document.createTextNode("国歌我爱你");
+            divObj.appendChild(text);
+            document.body.appendChild(divObj);
+        }
+        window.onload = function () {
+            //普通方法
+            //normal();
+
+
+            //通过给指定div创建子文本节点，添加元素
+            textNode();
+
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

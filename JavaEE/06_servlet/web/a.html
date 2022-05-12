@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>两种请求方式get和post，看看后端servlet如何区分</title>
+</head>
+<body>
+    <form action="http://localhost:8080/06_servlet_war_exploded/contextServlet" method="post">
+        <input type="hidden" name="action" value="login" />
+        <input type="hidden" name="username" value="root" />
+        <input type="submit"/>
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onblur事件</title>
+    <script type="text/javascript">
+        //onblur失去焦点静态注册
+        function onblurFunc() {
+            alert("onblur失去焦点静态注册");
+        }
+
+
+        //onblur失去焦点动态注册
+        window.onload = function (){
+            //1、通过document 获取事件对象
+            var inputObj = document.getElementById("input01");
+            //alert(inputObj);
+            //2、事件对象.事件名 = function(){}
+            inputObj.onblur = function () {
+                alert("onblur失去焦点动态注册");
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--onblur失去焦点事件：静态注册：-->
+    <input type="text" onblur="onblurFunc()"/>
+    <!--onblur失去焦点事件：动态注册：-->
+    <input type="text" id="input01"/>
+</body>
+</html>

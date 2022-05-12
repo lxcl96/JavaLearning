@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>9-表单提交的细节</title>
+</head>
+<body>
+<!--
+    <form>标签的细节：
+      action属性：设置要提交到的服务器地址
+      method属性：设置提交的方式POST 和GET[默认]
+        Get请求：
+            1、请求链是：服务器地址+action属性[+?+请求参数]      []表示可有可没有
+            2、参数格式是：name=value&name=value  这里指的是标签属性的name和value
+            3、不安全 明文显示
+            4、它有数据长度的限制
+
+        POST请求：
+            1、请求链只有：服务器地址
+            2、更安全 不显示
+            3、理论上没有数据长度的限制
+***********************************************
+   表单提交后数据没有发送给服务器的3种情况
+     1、表单项没有name属性值 加上name属性即可 【如果输入框同时输入数据就把 username=hsp拼接到请求链了】
+     2、单选、复选（下拉列表中的option）标签 都需要添加  value 属性
+     3、表单项不在form标签中
+***********************************************
+提交后：面跳转到 http://localhost:8080/?action=login&sex=on
+    http://localhost:8080/  服务器地址
+    ?                       分隔符
+    action=login&sex=on     请求参数
+
+全部添加之后的请求链：
+    http://localhost:8080/?action=login&username=hsp&pwd=123456&sex=on&hobby=on&hobby=on&hobby=on&motherland=%E4%B8%AD%E5%9B%BD&rate=aaaaa
+
+    http://localhost:8080/
+    ?
+    action=login 隐藏域
+    &   拼接符号
+    username=hsp&pwd=123456&
+    sex=on 没有添加value属性 没办法区分
+    &hobby=on&hobby=on&hobby=on&motherland=%E4%B8%AD%E5%9B%BD&rate=aaaaa
+
+全部添加value的请求链：
+http://localhost:8080/?action=login&username=hsp&pwd=123456&sex=male&hobby=smoke&hobby=drink&hobby=hair&motherland=china&rate=weqwewq
+
+参数 -->
+<form action="http://localhost:8080" method="POST">
+    <input type="hidden" name="action" value="login"/> <!-- 隐藏域要放在form标签中，不能放在外面否则提交时找不到此处的动作，会少参数-->
+    <h1 align="center">用户注册</h1>
+    <table align="center">
+        <tr>
+            <td>用户名称：</td>
+            <td><input type="text" value="默认值" name="username"/></td>
+        </tr>
+        <tr>
+            <td>用户密码：</td>
+            <td><input type="password" name="pwd" maxlength="10" minlength="5"/></td>
+        </tr>
+        <tr>
+            <td>
+                确认密码：
+            </td>
+            <td>
+                <input type="password" maxlength="10" minlength="5"/><br/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>性别：</td>
+            <td>
+                <input type="radio" name="sex" value="male" checked="checked"/>男
+                <input type="radio" value="female" name="sex"/>女
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                兴趣爱好:
+            </td>
+            <td>
+                <input type="checkbox" checked="checked" name="hobby" value="smoke"/> 抽烟
+                <input type="checkbox" name="hobby" value="drink"/> 喝酒 <!-- value为空请求立连就没有了-->
+                <input type="checkbox" name="hobby" value="hair"/> 烫头
+            </td>
+        </tr>
+        <tr>
+            <td>国籍：</td>
+            <td>
+                <select name="motherland">
+                    <option value="none">请选择国籍</option>
+                    <option selected="selected" value="china">中国</option>
+                    <option value="jp">日本</option>
+                    <option value="Ko">韩国</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                自我评价：
+            </td>
+            <td>
+                <textarea name="rate" cols="30" rows="10">我才是默认值</textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="reset" value="重置" \>
+            </td>
+            <td>
+                <input type="submit" \>
+            </td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

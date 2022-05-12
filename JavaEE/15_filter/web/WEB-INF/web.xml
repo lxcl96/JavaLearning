@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <filter>
+<!--        自定义一个拦截名，给mapping中使用-->
+        <filter-name>adminFilter</filter-name>
+        <filter-class>com.ly.filter.adminFilter</filter-class>
+
+    </filter>
+
+    <filter-mapping>
+<!--    filter-name表示当前的拦截路径给哪一个filter使用，servlet一样和上面一致    -->
+        <filter-name>adminFilter</filter-name>
+<!--        配置拦截路径 / 表示 http://ip:port/工程路径  和servlet一样-->
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+</web-app>

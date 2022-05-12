@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1</title>
+<link rel="stylesheet" type="text/css" href="styleB/css.css" />
+<script type="text/javascript" src="../../script/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function () {
+
+		//需要传递this  否则this会变
+		let delFunc = function (Obj) {
+			let nameText = Obj.parent().parent().children()[0].innerText;
+			//确认提示
+			//js提供的一个确认提示窗函数，返回一个boolean值
+			let b = confirm("确定删除" + nameText +"吗？");
+			if (b) {
+				//this 可以明确指出点击的是哪个连接 是JQ对象  【a标签特殊，别的都是JQ对象】
+				//因此需要将其封装成JQ对象
+
+				//获取this封装的jq对象的爷爷 对象
+				$(Obj).parent().parent().remove();
+				//alert(this.parent());
+			}
+			return false;//可以阻止网页跳转事件
+		}
+		//添加元素到表格
+		$("#addEmpButton").click(function () {
+			//获取name email salary 元素
+			let nameText = $("#empName").val();
+			let emailText = $("#email").val();
+			let salaryText = $("#salary").val();
+
+			//获取序号
+			let num = $("tr").length / 2;
+			//alert(num);
+			let $insertObj = $("<tr>\n" +
+					"\t\t\t<td>" + nameText +"</td>\n" +
+					"\t\t\t<td>" + emailText + "</td>\n" +
+					"\t\t\t<td>" + salaryText +"</td>\n" +
+					"\t\t\t<td><a href=\"deleteEmp?id=" + num + "\">Delete</a></td>\n" +
+					"\t\t</tr>");
+			//
+			$insertObj.appendTo($("#employeeTable"));
+
+			//添加一次绑定一次 a的click操作
+			$insertObj.find("a").click(function () {
+				return delFunc($(this));
+			});
+
+		});
+
+		$()
+
+		//删除元素  不能按序号，不然要写n个【执行顺序问题，只能删除三个】
+		$("a").click(function () {
+			//还有一种方法  代表把函数代码穿进去，而不是调用这个delFunc函数 函数所有执行的对象发生了变化
+			//因为JQ能直接传递函数  不是调用
+			//$("a").click(delFunc);
+			return delFunc($(this));
+		});
+
+	});
+</script>
+</head>
+<body>
+
+	<table id="employeeTable">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Salary</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td>Tom</td>
+			<td>tom@tom.com</td>
+			<td>5000</td>
+			<td><a href="deleteEmp?id=001">Delete</a></td>
+		</tr>
+		<tr	>
+			<td>Jerry</td>
+			<td>jerry@sohu.com</td>
+			<td>8000</td>
+			<td><a href="deleteEmp?id=002">Delete</a></td>
+		</tr>
+		<tr>
+			<td>Bob</td>
+			<td>bob@tom.com</td>
+			<td>10000</td>
+			<td><a href="deleteEmp?id=003">Delete</a></td>
+		</tr>
+	</table>
+
+	<div id="formDiv">
+	
+		<h4>添加新员工</h4>
+
+		<table>
+			<tr>
+				<td class="word">name: </td>
+				<td class="inp">
+					<input type="text" name="empName" id="empName" />
+				</td>
+			</tr>
+			<tr>
+				<td class="word">email: </td>
+				<td class="inp">
+					<input type="text" name="email" id="email" />
+				</td>
+			</tr>
+			<tr>
+				<td class="word">salary: </td>
+				<td class="inp">
+					<input type="text" name="salary" id="salary" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button id="addEmpButton" value="abc">
+						Submit
+					</button>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+</body>
+</html>

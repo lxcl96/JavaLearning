@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6-img标签</title>
+</head>
+<body>
+<!-- 显示图片
+JavaSE中：
+  绝对路径：盘符：/目录/文件名
+  相对路径: 以工程名开始算 src/../..
+
+JavaWeb中:
+  绝对路径: http://ip:port/工程名/资源路径
+
+  相对路径： . 表示当前目录
+           .. 表示上一级
+           文件名 表示当前目录下的问价相当于 ./文件名
+
+ img标签
+属性：alt 规定图像替代文本，当文件不存在时显示alt文字 [异常显示]
+    width
+    height
+    border 边框像素值
+
+-->
+<img src="C:\Users\Administrator\Pictures\wlq.png" width="200" height="260"  alt="图片不存在" border="1"> <!-- 错误的写法 -->
+<img src="../imgs/wlq.png" alt="五六七" width="200" height="260" border="1">
+</body>
+</html>

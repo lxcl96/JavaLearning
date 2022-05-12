@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-js函数隐藏参数</title>
+    <script type="text/javascript">
+        function f1() {
+            alert(arguments);//数组
+            alert(arguments.length);//2
+            alert(arguments[0]);//传递的1
+            alert(arguments[1]);//传递的"abc"
+            alert(arguments[2]);//undefined
+            alert("无参函数");
+        }
+        //函数的arguments 隐形参数（只在function函数内）
+        //f1(1,"abc");//参数传递到哪儿呢？
+
+
+    //需求：要求编写一个函数，用于计算所有参数相加的和并返回
+    //[没说几个参数，就用到了隐形参数 arguments数组]
+        let sum = function (num1,num2){//写几个参数不影响，写两个可读性比较好
+            let num = 0;
+            for (let i = 0;i < arguments.length;i++){
+                if (typeof(arguments[i]) == "number"){
+                    num += arguments[i];//数字+字符串 拼接
+                }
+            }
+            return num;
+        }
+
+        let number = sum(1,2,3,"abc",4,5,6,7,8,9,10);
+        alert(number);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

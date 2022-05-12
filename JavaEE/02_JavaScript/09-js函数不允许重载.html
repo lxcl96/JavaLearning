@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-js函数不允许重载</title>
+    <script type="text/javascript">
+        function f1(a,b) {
+            alert("有参函数被调用 a+b=" + (a + b));
+        }
+
+        function f1() {
+            alert("无参函数");
+        }
+        //函数的arguments 隐形参数（只在function函数内）
+        //在function函数中不需要定义，但是可以用来获取所有参数的变量，叫隐形参数。
+        //类似于java的可变长参数  public void fun(Object... o),操作也类似数组
+        //
+        f1(1,2);//参数传递到哪儿呢？
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

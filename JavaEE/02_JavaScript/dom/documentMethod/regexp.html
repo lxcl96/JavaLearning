@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+    <script type="text/javascript">
+        //要求字符串中必须包含e
+        //var patt = new RegExp("e"); //RegExp()就是 //
+        //var patt = /e/;
+        //var patt = /[abc]/;//表示字符串中必须包含abc中任意一个
+        //var patt = /[a-z]/;//小写a-z必须包含其中任意一个
+        //var patt = /[A-Z]/;//大写字母A-Z必须包含其中任意一个
+        //var patt = /[0-9]/;//0-9任意数字必须包含其中任意一个
+
+        //var patt = /a+/;//表示字符串 *包含*至少一个a
+        //var patt = /a*/;//表示字符串 *包含* 0个或多个a  【o个就不匹配总是true,1个a也为true】
+        //var patt = /a?/;//表示字符串 *包含* 0个或1个a  【o个就不匹配总是true，多个a也为true】
+        //var patt = /a{3}]/;//表示字符串 *包含* 连续三个a以上为true
+        //var patt = /a{3,5}]/;//表示字符串 *包含* 至少连续三个a，超过5个aaa也是true
+
+        //var patt = /a{3,}]/;//表示字符串 *包含* 至少3个a
+
+
+
+        //var patt = /a{3,5}]/; //这个就是只要满足至少3个a就算true
+        var patt = /^a{3,5}$/; //这个就是开头和结尾同时满足 至少3个连续a,且长度是3-5
+        //alert(patt);
+        var str = "aaaaaaa";//规定了长度 fasle
+        alert(patt.test(str));
+
+
+        //问题：var patt = /a{3,5}]/; 最大啥时候有用,用^$联合匹配
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

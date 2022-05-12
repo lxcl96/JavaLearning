@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04.JQ对象和DOM对象</title>
+    <script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // let arr = [12,"abd",true];
+            //let $btns = $("button");//dom对象集合
+            // for(let i=0;i<$btns.length;i++){
+            //     alert($btns[i]);
+            // }
+            //$btns[0].innerHTML = "哈哈哈";
+
+            //document.getElementById("testDiv").innerText = "这是dom对象的数InnerHTML";
+           // $("#testDiv").innerText = "这是JQ对象的数InnerHTML";//jq对象使用dom对象 失败
+
+
+           //  $("#testDiv").click(function () {
+           //      alert("click是jq对象的方法 jq使用")
+           //  })
+
+
+            // document.getElementById("testDiv").click(function () {
+            //     alert("click是jq对象的方法 dom使用")
+            // })
+
+            $("button.c1").click(function () {
+                alert("haha ")
+            });
+
+        })
+
+    </script>
+</head>
+<body>
+    <div id="testDiv">Atguigu is very good</div>
+    <button id="dom2dom" class="c1">使用dom对象调用dom方法</button>
+    <button id="dom2jq" class="c2">使用dom对象调用jq方法</button>
+    <button id="jq2jq" class="c3">使用jq对象调用jq方法</button>
+    <button id="jq2dom" class="c4">使用jq对象调用dom方法</button>
+</body>
+</html>

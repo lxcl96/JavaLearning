@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onsubmit事件</title>
+    <script type="text/javascript">
+        //静态注册事件
+        function onsubmitFunc() {
+            alert("静态注册onsubmit事件，提交前检查！");
+            return false; //静态写在这里写 同时需要在标签中写 “ return 函数名()”才能有效阻止
+        }
+
+        //动态注册事件
+        window.onload = function () {
+            //1
+            var formObj = document.getElementById("form01");
+            //2
+            formObj.onsubmit = function () {
+                alert("动态注册onsubmit事件，提交前检查！")
+                return false; //动态阻止提交
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--onsubmit事件：提交前检查   静态注册-->
+                                        <!-- onsubmit="return false;"就不会提交了   //静态注册阻止提交 -->
+    <form action="http://localhost:8080" onsubmit="return onsubmitFunc()">
+        <input type="submit" value="提交1"/>
+    </form> <br/>
+    <!--onsubmit事件：提交前检查   动态注册-->
+    <form action="http://localhost:8080" id="form01">
+        <input type="submit" value="提交2"/>
+    </form>
+</body>
+</html>

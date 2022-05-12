@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onchange事件</title>
+    <script type="text/javascript">
+        //静态注册事件
+        function onchangeFunc() {
+            alert("静态注册事件 onchange ：内容发生改变！");
+        }
+
+        //动态注册事件
+        window.onload = function () {
+            //1、通过document获取事件对象
+            var choObj = document.getElementById("ch01");//只能通过id获取 通过name没有事件属性
+            //2、事件对象.事件名 = function() {}
+            choObj.onchange = function () {
+                alert("动态注册事件 onchange ：内容发生改变！");
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--onchange内容发生改变事件   静态注册事件-->
+    <select onchange="onchangeFunc()">
+        <option value="">1</option>
+        <option value="">2</option>
+        <option value="">3</option>
+        <option value="">4</option>
+    </select> <br/>
+
+
+    <!--onchange内容发生改变事件   动态注册事件-->
+    <select name="choice" id="ch01" onchange="onchangeFunc()">
+        <option value="">1</option>
+        <option value="">2</option>
+        <option value="">3</option>
+        <option value="">4</option>
+    </select> <br/>
+
+</body>
+</html>

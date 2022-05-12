@@ -1,0 +1,1 @@
+alert("hello world");//分号结束
