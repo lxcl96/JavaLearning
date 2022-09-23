@@ -142,7 +142,7 @@ jsp的page指令可以修改jsp页面中一些重要的属性或行为。
 
    [***jsp中的out输出和response.getWriter输出的区别***](../08_jsp/web/output.jsp)
 
-![](D:\JavaWork\JavaWeb\Note\jsp中的out输出和response.getWriter输出的区别.jpg)
+![](.\jsp中的out输出和response.getWriter输出的区别.jpg)
 
 ​	原因：当jsp页面中所有代码执行完成后会执行下面两个操作。
 
